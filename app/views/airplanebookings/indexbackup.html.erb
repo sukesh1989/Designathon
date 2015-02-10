@@ -1,0 +1,44 @@
+<%- model_class = Airplanebooking -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:from) %></th>
+      <th><%= model_class.human_attribute_name(:to) %></th>
+      <th><%= model_class.human_attribute_name(:date_of_journey) %></th>
+      <th><%= model_class.human_attribute_name(:return_date) %></th>
+      <th><%= model_class.human_attribute_name(:noOfPassengers) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @airplanebookings.each do |airplanebooking| %>
+      <tr>
+        <td><%= link_to airplanebooking.id, airplanebooking_path(airplanebooking) %></td>
+        <td><%= airplanebooking.from %></td>
+        <td><%= airplanebooking.to %></td>
+        <td><%= airplanebooking.date_of_journey %></td>
+        <td><%= airplanebooking.return_date %></td>
+        <td><%= airplanebooking.noOfPassengers %></td>
+        <td><%=l airplanebooking.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_airplanebooking_path(airplanebooking), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      airplanebooking_path(airplanebooking),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_airplanebooking_path,
+            :class => 'btn btn-primary' %>

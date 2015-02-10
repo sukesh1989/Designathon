@@ -1,0 +1,59 @@
+<%= form_for @airplanebooking, :html => { :class => "form-horizontal airplanebooking" } do |f| %>
+
+    <% if @airplanebooking.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@airplanebooking.errors.count, "error") %> prohibited this airplanebooking from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @airplanebooking.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :from, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :from, :class => 'form-control' %>
+    </div>
+    <%= error_span(@airplanebooking[:from]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :to, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :to, :class => 'form-control' %>
+    </div>
+    <%= error_span(@airplanebooking[:to]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :date_of_journey, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :date_of_journey, :class => 'form-control' %>
+    </div>
+    <%= error_span(@airplanebooking[:date_of_journey]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :return_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :return_date, :class => 'form-control' %>
+    </div>
+    <%= error_span(@airplanebooking[:return_date]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :noOfPassengers, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :noOfPassengers, :class => 'form-control' %>
+    </div>
+    <%= error_span(@airplanebooking[:noOfPassengers]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            airplanebookings_path, :class => 'btn btn-default' %>
+
+<% end %>
